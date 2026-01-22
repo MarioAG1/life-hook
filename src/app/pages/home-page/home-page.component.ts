@@ -5,6 +5,7 @@ import {
   effect,
   OnChanges,
   OnInit,
+  signal,
 } from '@angular/core';
 
 const log = (...messages: string[]) => {
@@ -17,6 +18,10 @@ const log = (...messages: string[]) => {
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent implements OnInit {
+  //Version ZoneJS antiguo
+  tradicionalProperty = 'Mario';
+  signalProperty = signal('Mario');
+
   constructor() {
     console.log('Constuctor llamado');
   }
@@ -67,4 +72,12 @@ export class HomePageComponent implements OnInit {
       log('onCleanUp', 'Se ejecuta cuando el efecto se va a destruir');
     });
   });
+
+  changeTradicional() {
+    this.tradicionalProperty = 'Mario Alvarez';
+  }
+
+  changeSignal() {
+    this.signalProperty.set('Mario Alvarez');
+  }
 }
